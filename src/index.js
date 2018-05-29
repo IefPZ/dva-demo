@@ -1,4 +1,5 @@
 import dva from 'dva';
+import './index.html';
 import './index.css';
 
 import 'antd/dist/antd.css';

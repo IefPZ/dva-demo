@@ -1,9 +1,10 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Button } from 'antd';
 import { Route, Link } from 'dva/router';
 import IndexPage from './IndexPage';
 import Users from './Users'
 import Products from './Products'
+import Map from '../components/Gis/Map'
 
 const { Header, Content, Footer } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -51,10 +52,19 @@ class App extends React.Component {
                             <Icon type="database" />产品
                         </Link>
                     </Menu.Item>
+
+                    {/*登录*/}
+                    <Menu.Item >
+                        <Link to="/map">
+                            <Icon type="login" />登录
+                        </Link>
+                    </Menu.Item>
                 </Menu>
+
             </Header>
             <Content style={{margin: '0 8px', height: "85%"}}>
                 {/*this.props.children*/}
+                <Route path="/map" component={Map}/>
                 <Route path="/index" component={IndexPage}/>
                 <Route path="/users" component={Users} />
                 <Route path="/products" component={Products} />

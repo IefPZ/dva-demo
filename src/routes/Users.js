@@ -6,8 +6,6 @@ import UserList from '../components/Users/UserList';
 import UserSearch from '../components/Users/UserSearch';
 import UserModal from '../components/Users/UserModal';
 
-import styles from './Users.less'
-
 function Users({ location, dispath, users}) {
 
     const {
@@ -24,7 +22,7 @@ function Users({ location, dispath, users}) {
     const userModalProps={};
 
     return (
-        <div className={styles.normal}>
+        <div>
             {/*用户筛选搜索框*/}
             <UserSearch {...userSearchProps}/>
             {/*用户信息展示列表*/}
