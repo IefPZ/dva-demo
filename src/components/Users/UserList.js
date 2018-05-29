@@ -10,26 +10,35 @@ const UserList = ({
     dataSource,
 }) => {
     const columns = [{
-        title: '姓名',
-        dataIndex: 'name',
-        key: 'name',
+        title: 'id',
+        dataIndex: 'id',
+        key: 'id',
         render: (text) => <a href='#'>{text}</a>
     }, {
-        title: '年龄',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'username',
+        dataIndex: 'username',
+        key: 'username',
+        render: (text) => <a href='#'>{text}</a>
     }, {
-        title: '住址',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'first_name',
+        dataIndex: 'first_name',
+        key: 'first_name',
+    }, {
+        title: 'last_name',
+        dataIndex: 'last_name',
+        key: 'last_name',
+    }, {
+        title: 'email',
+        dataIndex: 'email',
+        key: 'email',
     }, {
         title: '操作',
         key: 'operation',
         render: (text, record) => (
             <p>
-                <a onClick={()=>{}}>编辑</a>
+                <a onClick={() => { }}>编辑</a>
                 &nbsp;
-                <Popconfirm title='确定删除？' onConfirm={()=>{}}>
+                <Popconfirm title='确定删除？' onConfirm={() => { }}>
                     <a>删除</a>
                 </Popconfirm>
             </p>
@@ -41,12 +50,12 @@ const UserList = ({
         total,
         current,
         pageSize: 10,
-        onChange: ()=>{},
+        onChange: () => { },
     };
-    
+
     return (
         <div>
-            <Table 
+            <Table
                 columns={columns}
                 dataSource={dataSource}
                 loading={loading}

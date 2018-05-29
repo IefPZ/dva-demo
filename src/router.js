@@ -11,8 +11,8 @@ function RouterConfig({ history }) {
     <Router history={history}>
 
         <Route path="/" component={App} >
-          
           {/*
+          <IndexRedirect to="/index" />
           <Route path="/index" component={IndexPage}/>
           <Route path="/users" component={Users} />
           <Route path="/products" component={Products} />
