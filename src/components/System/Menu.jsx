@@ -1,7 +1,7 @@
 import { Layout, Menu, Icon, Button } from 'antd';
 import { Route, Link } from 'dva/router';
 
-const AppHeader = ({ current }) => {
+const AppMenu = ({ current }) => {
     console.log('props:' + current);
     return (
         <div>
@@ -38,4 +38,4 @@ const AppHeader = ({ current }) => {
     )
 };
 
-export default AppHeader;
+export default AppMenu;

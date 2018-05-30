@@ -1,10 +1,12 @@
+import { login, logout } from '../services/system';
+
 export default {
 
-    namespace: 'home',
+    namespace: 'system',
 
     state: {
-        //activeIndex: 0,
-        current: 'home',
+        current: 'system',
+        isLogin: false
     },
 
     subscriptions: {
@@ -16,6 +18,19 @@ export default {
                 });
             });
         },
+    },
+
+    effects: {
+        *login({ payload }, { call, put }) {
+            const { data } = yield call(login, payload);
+            if (data) {
+                yield put({
+                    type: 'isLogin', payload: {
+                        isLogin: data.success
+                    }
+                })
+            }
+        }
     },
 
     reducers: {
@@ -32,6 +47,10 @@ export default {
                 current = 'Map';
             }
             return { ...state, current: current };
+        },
+
+        isLogin(state, action) {
+            return { ...state, ...action.payload };
         }
     },
 
