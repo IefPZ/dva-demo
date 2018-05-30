@@ -1,12 +1,14 @@
 import { login, logout } from '../services/system';
+import { stat } from 'fs';
 
 export default {
 
     namespace: 'system',
 
     state: {
-        current: 'system',
-        isLogin: false
+        current: 'home',
+        isLogin: false,
+        username: ''
     },
 
     subscriptions: {
@@ -22,10 +24,12 @@ export default {
 
     effects: {
         *login({ payload }, { call, put }) {
+
             const { data } = yield call(login, payload);
             if (data) {
                 yield put({
                     type: 'isLogin', payload: {
+                        username: payload.username,
                         isLogin: data.success
                     }
                 })
@@ -46,10 +50,22 @@ export default {
             } else if (/map/.test(pathname)) {
                 current = 'Map';
             }
-            return { ...state, current: current };
+            let result = { ...state, current: current, isLogin: true };
+            // 判断是否登录
+            if (!state.isLogin) {
+                let sessionStorage = window.sessionStorage;
+                if (sessionStorage['userInfo']) {
+                    let userInfo = JSON.parse(sessionStorage['userInfo'])
+                    result.username = userInfo.username
+                }
+            }
+            return result
         },
 
         isLogin(state, action) {
+            let userInfo = action.payload;
+            let sessionStorage = window.sessionStorage;
+            sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
             return { ...state, ...action.payload };
         }
     },
