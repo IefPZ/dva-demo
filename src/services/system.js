@@ -10,13 +10,12 @@ export async function login(params) {
     }, 
     body: JSON.stringify(params)
   }
-  return request('http://192.168.106.134/login/', options)
+  return request('http://192.168.106.134/login/', options);
 }
 
 export async function logout(params) {
   let options = {
-    method: 'POST',
-    body: params
+    method: 'delete'
   }
   return request('http://192.168.106.134/logout/', options)
 }

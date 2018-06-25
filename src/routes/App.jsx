@@ -10,6 +10,7 @@ import Users from './Users'
 import Products from './Products'
 import Map from '../components/Gis/Map'
 import WrappedNormalLoginForm from '../components/System/Login';
+import AppHeader from '../components/System/Header';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -36,7 +37,7 @@ const App = ({ system, dispatch }) => {
                     </Sider>
                     <Layout>
                         <Header>
-
+                            <AppHeader/>
                         </Header>
                         <Content style={{ margin: '0 8px', height: "85%" }}>
                             <Route path="/index" component={IndexPage} />

@@ -9,8 +9,6 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                console.log('typeof values : ', typeof(values));
                 onSubmit(values);
             }
         });

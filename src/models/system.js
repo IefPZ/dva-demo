@@ -23,18 +23,35 @@ export default {
     },
 
     effects: {
+        //登录
         *login({ payload }, { call, put }) {
 
             const { data } = yield call(login, payload);
             if (data) {
                 yield put({
-                    type: 'isLogin', payload: {
+                    type: 'doLogin', 
+                    payload: {
                         username: payload.username,
                         isLogin: data.success
                     }
                 })
             }
-        }
+        },
+
+        //登出
+        *logout({ payload }, { call, put }) {
+
+            const { data } = yield call(logout, payload);
+            console.log(data);
+            if (data) {
+                yield put({
+                    type: 'doLogout', payload: {
+                        username: payload.username,
+                        isLogin: data.success
+                    }
+                })
+            }
+        }, 
     },
 
     reducers: {
@@ -50,24 +67,33 @@ export default {
             } else if (/map/.test(pathname)) {
                 current = 'Map';
             }
-            let result = { ...state, current: current, isLogin: true };
+            let result = { ...state, current: current, isLogin: false };
             // 判断是否登录
             if (!state.isLogin) {
                 let sessionStorage = window.sessionStorage;
                 if (sessionStorage['userInfo']) {
                     let userInfo = JSON.parse(sessionStorage['userInfo'])
                     result.username = userInfo.username
+                    result.isLogin = true
                 }
             }
             return result
         },
 
-        isLogin(state, action) {
+        doLogin(state, action) {
             let userInfo = action.payload;
             let sessionStorage = window.sessionStorage;
             sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
             return { ...state, ...action.payload };
-        }
+        },
+
+        doLogout(state, action) {
+            let userInfo = action.payload;
+            let sessionStorage = window.sessionStorage;
+            sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+            return { ...state, ...action.payload };
+        },
+        
     },
 
 }
