@@ -67,7 +67,7 @@ export default {
             } else if (/map/.test(pathname)) {
                 current = 'Map';
             }
-            let result = { ...state, current: current, isLogin: false };
+            let result = { ...state, current: current};
             // 判断是否登录
             if (!state.isLogin) {
                 let sessionStorage = window.sessionStorage;
